@@ -1,9 +1,6 @@
 
 require 'http'
-require 'byebug'
-require "dotenv"
 
-Dotenv.load
 # Version
 require 'avostart/version'
 
@@ -27,8 +24,9 @@ require 'avostart/resources'
 
 module Avostart
   @api_base = 'https://partners-api.staging.avostart.fr'
-  @client_id = ENV['CLIENT_ID']
-  @client_secret = ENV['CLIENT_SECRET']
+  @client_id = nil
+  @client_secret = nil
+
   class << self
     attr_accessor :avostart_account, :api_base, :client_id, :client_secret
   end
