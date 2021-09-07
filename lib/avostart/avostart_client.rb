@@ -31,7 +31,8 @@ module Avostart
       api_base ||= Avostart.api_base
 
       if access_token_expired?
-        parsed_access_token_response = fetch_access_token.parse
+        token_http_resp = fetch_access_token
+        parsed_access_token_response = token_http_resp.parse
         Thread.current[:avostart_access_token] = { 
           token: parsed_access_token_response['access_token'],
           exp: Time.now + parsed_access_token_response['expires_in']
@@ -75,7 +76,7 @@ module Avostart
 
     def fetch_access_token
       url = [api_url, 'token'].join('/')
-      conn.post(
+      http_resp = conn.post(
         url,
         form: { 
           grant_type: 'client_credentials', 
@@ -83,6 +84,9 @@ module Avostart
           client_secret: Avostart.client_secret
         }
       )
+      return http_resp if http_resp.status.success?
+
+      raise general_api_error(http_resp.status, JSON.parse(http_resp.to_s))
     end
   end
 end
