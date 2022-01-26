@@ -43,6 +43,9 @@ module Avostart
   class APIError < AvostartError
   end
 
+  class NotFoundError < AvostartError
+  end
+
   # InvalidRequestError is raised when a request is initiated with invalid
   # parameters.
   class InvalidRequestError < AvostartError

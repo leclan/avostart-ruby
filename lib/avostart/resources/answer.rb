@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Avostart
-  class Question < APIResource
+  class Answer < APIResource
 
-    OBJECT_NAME = 'question'
-    OBJECT_KEY = 'questions'
+    OBJECT_NAME = 'answer'
+    OBJECT_KEY = 'answer'
 
     def id
       self['id']
@@ -20,7 +20,6 @@ module Avostart
 
 
     def resource_url
-      byebug
       if self['id']
         "/case-files/#{self['id']}/question"
       else
