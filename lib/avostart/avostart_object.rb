@@ -6,7 +6,7 @@ module Avostart
 
     def initialize(id = nil, opts = {})
       @opts = opts
-      @values = {}
+      @values = {'id' => id}
     end
 
     def self.construct_from(values, opts = {})

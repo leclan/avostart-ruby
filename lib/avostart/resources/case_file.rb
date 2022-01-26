@@ -3,6 +3,7 @@
 module Avostart
   class CaseFile < APIResource
     extend Avostart::APIOperations::Create
+    extend Avostart::APIOperations::List
 
     OBJECT_NAME = 'case_file'
     OBJECT_KEY = 'case-files'
@@ -10,7 +11,7 @@ module Avostart
     custom_method :consultation, http_verb: :post
 
     def id
-      self['id']
+      super || self['case_reference']
     end
 
     def object_class

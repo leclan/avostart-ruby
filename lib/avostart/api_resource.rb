@@ -3,9 +3,14 @@
 module Avostart
   class APIResource < AvostartObject
     include Avostart::APIOperations::Request
+    attr_accessor :values
 
     def self.class_name
       name.split('::')[-1]
+    end
+
+    def id
+      self['id']
     end
 
     def self.resource_url
@@ -63,7 +68,10 @@ module Avostart
 
     def refresh
       resp, opts = request(:get, resource_url)
-      initialize_from(resp.data[self.class::OBJECT_KEY.to_s][0], opts)
+      data = resp.data[self.class::OBJECT_KEY.to_s]
+      raise Avostart::NotFoundError unless data.present?
+
+      initialize_from(data, opts)
     end
 
     def self.retrieve(id, opts = {})
