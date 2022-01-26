@@ -2,13 +2,8 @@
 
 module Avostart
   class Answer < APIResource
-
     OBJECT_NAME = 'answer'
     OBJECT_KEY = 'answer'
-
-    def id
-      self['id']
-    end
 
     def object_class
       Question::OBJECT_NAME

@@ -11,7 +11,7 @@ module Avostart
     custom_method :consultation, http_verb: :post
 
     def id
-      self['id']
+      super || self['case_reference']
     end
 
     def object_class

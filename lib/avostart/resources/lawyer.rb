@@ -8,10 +8,6 @@ module Avostart
     OBJECT_KEY = 'lawyers'
     OBJECT_PRIMARY_KEY = 'id'
 
-     def id
-      self['id']
-    end
-
     def object_class
       Lawyer::OBJECT_NAME
     end

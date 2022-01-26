@@ -2,12 +2,15 @@
 
 module Avostart
   class APIResource < AvostartObject
-
     include Avostart::APIOperations::Request
     attr_accessor :values
 
     def self.class_name
       name.split('::')[-1]
+    end
+
+    def id
+      self['id']
     end
 
     def self.resource_url
