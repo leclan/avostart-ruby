@@ -17,13 +17,17 @@ module Avostart
       @values[key]
     end
 
-    protected 
+    def to_hash
+      @values
+    end
+
+    protected
 
     def metaclass
       class << self; self; end
     end
-    
-    def initialize_from(values, opts) 
+
+    def initialize_from(values, opts)
       @values = values.each_with_object({}) { |(k, v), h| h[k] = Util.convert_to_avostart_object(v, opts) }
       add_accessors(values)
       self
