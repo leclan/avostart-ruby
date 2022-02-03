@@ -13,6 +13,10 @@ module Avostart
       self['id']
     end
 
+    def to_hash
+      self['values']
+    end
+
     def self.resource_url
       if self == APIResource
         raise NotImplementedError,
