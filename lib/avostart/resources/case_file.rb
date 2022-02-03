@@ -9,6 +9,7 @@ module Avostart
     OBJECT_KEY = 'case-files'
     OBJECT_PRIMARY_KEY = 'case_reference'
     custom_method :consultation, http_verb: :post
+    custom_method :question, http_verb: :get
 
     def id
       super || self['case_reference']
